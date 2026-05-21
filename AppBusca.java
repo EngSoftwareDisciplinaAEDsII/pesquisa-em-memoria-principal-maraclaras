@@ -55,7 +55,8 @@ public class AppBusca {
         System.out.println("2 - Embaralhar produtos carregados");
         System.out.println("3 - Busca sequencial por produtos");
         System.out.println("4 - Busca binária por produtos");
-        System.out.println("5 - Listar todos os produtos");
+        System.out.println("5 - Busca aleatória por produtos");
+        System.out.println("6 - Listar todos os produtos");
         
         System.out.println("0 - Finalizar");
        
@@ -142,6 +143,12 @@ public class AppBusca {
         resultadoBusca(prod, buscador);
     }
 
+    static void fazerBuscaAleatoria(){
+        IBuscador<Produto> buscador = new BuscaAleatoria<>(produtos);
+        Produto prod = localizarProduto(buscador);
+        resultadoBusca(prod, buscador);
+    }
+
     public static void main(String[] args) {
         teclado = new Scanner(System.in);
         
@@ -157,7 +164,8 @@ public class AppBusca {
                 case 2 -> embaralharProdutos();
                 case 3 -> fazerBuscaSequencial();
                 case 4 -> fazerBuscaBinaria();
-                case 5 -> listarProdutos();
+                case 5 -> fazerBuscaAleatoria();
+                case 6 -> listarProdutos();
                 case 0 -> System.out.println("FLW VLW OBG VLT SMP.");
             }
             pausa();

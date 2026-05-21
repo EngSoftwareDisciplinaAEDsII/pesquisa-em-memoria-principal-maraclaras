@@ -16,7 +16,7 @@ public class Mergesort<T extends Comparable<T>> implements IOrdenador<T>{
             comparacoes = 0;
             movimentacoes = 0;
         }
-         
+
         @Override
         public T[] ordenar(T[] dados) {    
             return ordenar(dados, T::compareTo);
@@ -62,19 +62,19 @@ public class Mergesort<T extends Comparable<T>> implements IOrdenador<T>{
             }
             int origem = indice1;
             int destino = meio;
-           
+
             if(indice1 > meio){
                 origem = indice2;
                 destino = fim;
             }
-           
+
             for(int i = origem; i<=destino; i++){
                 novo[pos++] = dados[i];
                 movimentacoes++;
             }
             return novo;
         }        
- 
+
         public long getComparacoes() {
             return comparacoes;
         }
