@@ -45,8 +45,8 @@ public abstract class Produto implements Comparable<Produto> {
      * @param validade Data de validade passada como parâmetro
      */
     private void init(String desc, double precoCusto, double margemLucro){
-               
-        if(desc.length()<3 ||precoCusto<=0||margemLucro<=0)
+        desc = desc.trim();
+        if(desc.length()<3 || precoCusto<=0 || margemLucro<=0)
             throw new IllegalArgumentException("Valores inválidos para o produto");
         descricao = desc;
         this.precoCusto = precoCusto;
@@ -93,7 +93,7 @@ public abstract class Produto implements Comparable<Produto> {
      * @return Inteiro positivo com o código gerado a partir da sua descrição.
      */
     public int hashCode(){
-        return descricao.toLowerCase().hashCode();
+        return descricao.trim().toLowerCase().hashCode();
     }
 
     /**
@@ -130,7 +130,7 @@ public abstract class Produto implements Comparable<Produto> {
     public boolean equals(Object obj){
         try{
             Produto outro = (Produto)obj;
-            return this.hashCode() == outro.hashCode();
+            return this.descricao.trim().equalsIgnoreCase(outro.descricao.trim());
         }catch (ClassCastException ex){
             return false;
         }
@@ -146,7 +146,7 @@ public abstract class Produto implements Comparable<Produto> {
         //2;descrição;preçoDeCusto;margemDeLucro;dataDeValidade
         Produto novoProduto = null;
         String[] detalhes = linha.split(";");
-        String descr = detalhes[1];
+        String descr = detalhes[1].trim();
         double precoCusto = Double.parseDouble(detalhes[2].replace(",", "."));
         double margem = Double.parseDouble(detalhes[3].replace(",", "."));
         if(detalhes[0].equals("1")){
